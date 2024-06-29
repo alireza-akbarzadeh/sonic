@@ -4,7 +4,7 @@ type AuthLayoutProps = {
   children: React.ReactNode;
 };
 
-export function Authlayout(props: AuthLayoutProps) {
+export default function Authlayout(props: AuthLayoutProps) {
   const { children } = props;
 
   return (
