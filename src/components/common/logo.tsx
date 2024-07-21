@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -11,9 +10,8 @@ export function Logo(props: LogoProps) {
   const { label = "Sonic", href = "/" } = props;
 
   return (
-    <Link href={href}>
-      {/* <Image /> */}
-      <span>{label}</span>
+    <Link href={href} className="font-bold text-green-700 text-xl">
+      {label}
     </Link>
   );
 }

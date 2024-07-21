@@ -1,13 +1,25 @@
-import Image from "next/image";
-import { Header } from "@/components/root";
+// app/posts/page.jsx
+import { Posts } from "@/domains/posts";
+import { getPosts } from "@/services/posts";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
-export default function Home() {
+export default async function PostsPage() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
+
   return (
-    <>
-      <Header />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        Sonic
-      </main>
-    </>
+    // Neat! Serialization is now as easy as passing props.
+    // HydrationBoundary is a Client Component, so hydration will happen there.
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Posts />
+    </HydrationBoundary>
   );
 }

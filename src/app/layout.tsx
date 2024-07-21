@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
 import { ThemeProvider } from "@/providers/theme-providers";
+import { QueryProviders } from "@/providers/query-providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <QueryProviders>{children}</QueryProviders>
           </ThemeProvider>
         </body>
       </html>
